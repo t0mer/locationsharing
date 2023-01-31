@@ -48,7 +48,7 @@ if __name__ == "__main__":
     client = connect_mqtt()
     client.loop_start()
     schedule.every(30).minutes.do(cookieshandler.refresh)
-    schedule.every(update_interval).minutes.do(run)
+    schedule.every(int(update_interval)).minutes.do(run)
 
     while True:
         schedule.run_pending()
