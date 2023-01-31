@@ -1,6 +1,5 @@
 # locationsharing
-A Docker container to retrieve coordinates from an google account that has been shared locations of other accounts and add it as a device tracker to Home Assistant.
-The container publishes the info using mqtt auto descovery without the need of special configuration on the Home Assistant side.
+A Docker container to retrieve coordinates from an google account that has been shared locations of other accounts and add it as a device tracker to Home Assistant. The container publishes the info using mqtt auto discovery without the need of special configuration on the Home Assistant side.
 
 ## Install
 Use the following docker-compose file for the container installation:
