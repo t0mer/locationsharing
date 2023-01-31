@@ -9,7 +9,7 @@ from cookieshandler import CookiesHandler
 
 
 
-cookies_file = "./cookies" + os.getenv("COOKIES_FILE_NAME")
+cookies_file = "./cookies/" + os.getenv("COOKIES_FILE_NAME")
 google_email = os.getenv("EMAIL_ADDRESS")
 update_interval = os.getenv("UPDATE_INTERVAL")
 cookieshandler = CookiesHandler()
