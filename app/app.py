@@ -27,7 +27,7 @@ def connect_mqtt():
     client = mqtt_client.Client(f'python-mqtt-{random.randint(0, 1000)}')
     client.username_pw_set(os.getenv("MQTT_USERNAME"), os.getenv("MQTT_PASSWORD"))
     client.on_connect = on_connect
-    client.connect(os.getenv("MQTT_HOST"), os.getenv("MQTT_PORT"))
+    client.connect(os.getenv("MQTT_HOST"), int(os.getenv("MQTT_PORT")))
     return client
 
 def publish(client):
