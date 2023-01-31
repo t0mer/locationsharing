@@ -12,12 +12,12 @@ class CookiesHandler(object):
     def refresh(self):
         try:
             self.cookiefile = "./cookies/" + os.getenv("COOKIES_FILE_NAME")
-            cookies = self.parseCookieFile('google.com_cookies.txt')
+            cookies = self.parseCookieFile()
             response = requests.get('https://maps.google.com', cookies=cookies)
             cookies = response.cookies
             logger.info('Cookies reloaded')
         except Exception as e:
-            logger.error("Error refreshing cookies. " + e)
+            logger.error("Error refreshing cookies. " + str(e))
 
 
 
