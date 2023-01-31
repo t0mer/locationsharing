@@ -9,9 +9,9 @@ from cookieshandler import CookiesHandler
 
 
 
-cookies_file = "./cookies" + os.get_env("COOKIES_FILE_NAME")
-google_email = os.get_env("EMAIL_ADDRESS")
-update_interval = os.get_env("UPDATE_INTERVAL")
+cookies_file = "./cookies" + os.getenv("COOKIES_FILE_NAME")
+google_email = os.getenv("EMAIL_ADDRESS")
+update_interval = os.getenv("UPDATE_INTERVAL")
 cookieshandler = CookiesHandler()
 
 
@@ -25,9 +25,9 @@ def connect_mqtt():
             logger.error("Failed to connect, return code %d\n" +  rc)
 
     client = mqtt_client.Client(f'python-mqtt-{random.randint(0, 1000)}')
-    client.username_pw_set(os.get_env("MQTT_USERNAME"), os.get_env("MQTT_PASSWORD"))
+    client.username_pw_set(os.getenv("MQTT_USERNAME"), os.getenv("MQTT_PASSWORD"))
     client.on_connect = on_connect
-    client.connect(os.get_env("MQTT_HOST"), os.get_env("MQTT_PORT"))
+    client.connect(os.getenv("MQTT_HOST"), os.getenv("MQTT_PORT"))
     return client
 
 def publish(client):
