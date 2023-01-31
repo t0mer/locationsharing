@@ -11,7 +11,7 @@ class CookiesHandler(object):
 
     def refresh(self):
         try:
-            self.cookiefile = "./cookies" + os.getenv("COOKIES_FILE_NAME")
+            self.cookiefile = "./cookies/" + os.getenv("COOKIES_FILE_NAME")
             cookies = self.parseCookieFile('google.com_cookies.txt')
             response = requests.get('https://maps.google.com', cookies=cookies)
             cookies = response.cookies
