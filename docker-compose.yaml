@@ -1,0 +1,16 @@
+version: "3.6"
+services:
+  wazy:
+    image: techblog/locationsharing
+    container_name: locationsharing
+    restart: always
+    environment:
+      - EMAIL_ADDRESS= #Google account email
+      - COOKIES_FILE_NAME= #Cookies file name (File name without path)
+      - MQTT_HOST= #MQTT Host address
+      - MQTT_PORT= #MQTT Port ,Default is 1883
+      - MQTT_USERNAME= #MQTT Username
+      - MQTT_PASSWORD= #MQTT Password
+      - UPDATE_INTERVAL=1 #In minutes
+    volumes:
+      - ./locationsharing/cookies:/app/cookies
