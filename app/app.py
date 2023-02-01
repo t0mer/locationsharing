@@ -39,7 +39,7 @@ def publish(client):
         id = id.replace(".","_")
         tracker_id = '{"state_topic": "' +  id +'/state", "name": "' +  id +'", "payload_home": "home", "payload_not_home": "not_home", "json_attributes_topic": "' +  id +'/attributes"}'
         client.publish('homeassistant/device_tracker/' +  id +'/config',tracker_id)
-        attrubutes = {"latitude": str(getattr(person, "latitude")), "longitude": str(getattr(person, "longitude")), "gps_accuracy": str(getattr(person, "accuracy")), "battery_level": str(getattr(person, "battery_level"))}
+        attrubutes = {"latitude": getattr(person, "latitude"), "longitude": getattr(person, "longitude"), "gps_accuracy": getattr(person, "accuracy"), "battery_level": getattr(person, "battery_level")}
         client.publish( id + '/attributes',json.dumps(attrubutes))
 
 def run():
