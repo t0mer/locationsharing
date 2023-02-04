@@ -33,7 +33,7 @@ def connect_mqtt():
 
 def publish(client):
     persons = service.get_all_people()
-    logger.info("Number of peoples: " + str(len(persons)))
+    # logger.info("Number of peoples: " + str(len(persons)))
     for person in persons:
         id = str(getattr(person, "nickname"))
         logger.info("Person: " + id)
