@@ -32,8 +32,11 @@ def connect_mqtt():
     return client
 
 def publish(client):
-    for person in service.get_all_people():
+    persons = service.get_all_people()
+    logger.info("Number of peoples: " + str(len(persons)))
+    for person in persons:
         id = str(getattr(person, "nickname"))
+        logger.info("Person: " + id)
         if "@" in id:
             id = id.split("@")[0]
         id = id.replace(".","_")
