@@ -3,6 +3,7 @@ import time
 import random
 import json
 import schedule
+import re
 from loguru import logger
 from locationsharinglib import Service
 from paho.mqtt import client as mqtt_client
@@ -18,6 +19,24 @@ cookieshandler = CookiesHandler()
 
 service = Service(cookies_file=cookies_file, authenticating_account=google_email)
 
+def convert_word(word):
+    english = {"א": "a", "ב": "b", "ג": "g", "ד": "d", "ה": "h", "ו": "v", "ז": "z", "ח": "h", "ט": "t", "י": "y",
+               "כ": "c", "ך": "c", "ל": "l", "מ": "m", "ם": "m", "נ": "n", "ן": "n", "ס": "s", "ע": "a", "פ": "p",
+               "ף": "p", "צ": "ch", "ץ": "ch", "ק": "k", "ר": "r", "ש": "sh", "ת": "t", }
+    result = ""
+    word = re.sub('\W+', '', word)
+    if word.encode().isalpha():
+        return word
+    elif re.search('[a-zA-Z]', word):
+        return ''.join(list(filter(lambda ele: re.search("[a-zA-Z\s]+", ele) is not None, word)))
+    else:
+        try:
+            for char in word:
+                result = result + english[char]
+            return result
+        except Exception as e:
+            print(e)
+            
 def connect_mqtt():
     def on_connect(client, userdata, flags, rc):
         if rc == 0:
@@ -35,7 +54,7 @@ def publish(client):
     persons = service.get_all_people()
     # logger.info("Number of peoples: " + str(len(persons)))
     for person in persons:
-        id = str(getattr(person, "nickname"))
+        id = convert_word(str(getattr(person, "nickname")))
         logger.info("Person: " + id)
         if "@" in id:
             id = id.split("@")[0]
