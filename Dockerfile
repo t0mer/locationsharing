@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:questing-20251007
 
 LABEL maintainer="tomer.klein@gmail.com"
 
